@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <title>MB KE-220</title>
+</head>
+<body>
+    <h1>MBKE220 Task App</h1>
+
+    <ul>
+        {% for task in tasks %}
+            <li>
+                <p>{{ task }}</p>
+                <form method="POST" action="{{ url_for('delete_task', task_id=loop.index0) }}">
+                    <input type="submit" value="Delete" class="delete-btn">
+                </form>
+
+            </li>
+        {% endfor %}
+    </ul>
+
+    <form method="POST" action="{{ url_for('add_task') }}">
+        <input type="text" name="new_task" placeholder="Add new task">
+        <button type="submit">Add</button>
+    </form>
+</body>
+</html>
